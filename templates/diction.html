@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block head %}
+<link href="{{url_for('static', filename='css/home.css')}}" rel="stylesheet" type="text/css">
+<title>dictionary</title>
+{% endblock %}
+{% block body %}
+<div id="header_main">
+	<ul id="hslider">
+		<li><a href="{{url_for('homepage')}}">homepage</a></li>
+		<li><a href="{{url_for('plural')}}">plural and singular</a></li>
+		<li><a href="{{url_for('spelling')}}">spelling</a></li>
+	</ul>
+</div>
+<div class="login">
+	<h1>Dictionary</h1>
+	<div>
+		<form method="POST" action="{{url_for('meaning')}}">
+			<label for="word">enter the word</label><br>
+			<input type="textarea" name="word" placeholder="enter the word" required="required"><br>
+			<button class="btn btn-primary btn-block btn-large" type="submit">get meaning</button>
+		</form>
+	</div>
+	<br><br>
+	{% for i in meaning%}
+		{{ i }}<br>
+	{% endfor %}
+</div>
+{% endblock %}
