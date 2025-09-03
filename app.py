@@ -47,5 +47,9 @@ def singular():
 		plur = sing.words.singularize()
 	return render_template('plurl.html', singulars=f'the plural of {sing} is {plur[0]}')
 
+@app.route("/oxford")
+def oxford():
+	return render_template('oxford.html')
+
 if __name__ == '__main__':
 	app()
