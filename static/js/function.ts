@@ -1,12 +1,11 @@
-let hello_btn = document.querySelector("#hello-btn")
+let btnsearch: HTMLButtonElement = document.querySelector("#inp-btn")
+let inpsearch: HTMLInputElement = document.querySelector("#inp-inp")
 
-interface greet {
-    greet: String;
-}
-
-hello_btn.addEventListener("click", async ()=>{
-    console.log("hello world")
-    const response = await fetch("/hello")
+btnsearch.addEventListener("click", async function(){
+    console.log("search button")
+    console.log(inpsearch.value)
+    const response = await fetch("/meaning", {method: "POST"})
     const item = await response.json()
-    console.log(item.greet)
-});
+
+    console.log(item)
+})

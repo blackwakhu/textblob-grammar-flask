@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request
 from textblob import Word, TextBlob
+from flask_restful import Resource, Api, reqparse
 
 app = Flask(__name__)
+api = Api(app)
 
 @app.route('/')
 def homepage():
@@ -12,7 +14,7 @@ def dictionary():
 	return render_template('diction.html')
 
 @app.route('/dictionary/meaning', methods=['GET','POST'])
-def meaning():
+def meaningDictionary():
 	if request.method == 'POST':
 		word_search = request.form.get('word')
 		meaning = Word(word_search).definitions
@@ -54,6 +56,12 @@ def oxford():
 @app.route("/hello")
 def hello():
 	return {"greet": "hello world"}
+
+@api.resource("/meaning")
+class Meaning(Resource):
+	def post(self):
+		return {"greet": "Hello world"}
+
 
 if __name__ == '__main__':
 	app()

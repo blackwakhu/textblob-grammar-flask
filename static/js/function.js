@@ -7,10 +7,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-let hello_btn = document.querySelector("#hello-btn");
-hello_btn.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
-    console.log("hello world");
-    const response = yield fetch("/hello");
-    const item = yield response.json();
-    console.log(item.greet);
-}));
+let btnsearch = document.querySelector("#inp-btn");
+let inpsearch = document.querySelector("#inp-inp");
+btnsearch.addEventListener("click", function () {
+    return __awaiter(this, void 0, void 0, function* () {
+        console.log("search button");
+        console.log(inpsearch.value);
+        const response = yield fetch("/meaning", { method: "POST" });
+        const item = yield response.json();
+        console.log(item);
+    });
+});
