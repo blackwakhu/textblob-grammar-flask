@@ -51,5 +51,9 @@ def singular():
 def oxford():
 	return render_template('oxford.html')
 
+@app.route("/hello")
+def hello():
+	return {"greet": "hello world"}
+
 if __name__ == '__main__':
 	app()
