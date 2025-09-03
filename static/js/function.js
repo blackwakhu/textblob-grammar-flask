@@ -9,12 +9,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 let btnsearch = document.querySelector("#inp-btn");
 let inpsearch = document.querySelector("#inp-inp");
+let meandiv = document.querySelector("#meaning");
 btnsearch.addEventListener("click", function () {
     return __awaiter(this, void 0, void 0, function* () {
         console.log("search button");
         console.log(inpsearch.value);
-        const response = yield fetch("/meaning", { method: "POST" });
+        const response = yield fetch("/meaning", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "word": inpsearch.value
+            })
+        });
         const item = yield response.json();
+        let wordMean = "";
+        item.meaning.forEach(i => {
+            wordMean = `${wordMean}<li>${i}</li>`;
+        });
         console.log(item);
+        meandiv.innerHTML = wordMean;
     });
 });

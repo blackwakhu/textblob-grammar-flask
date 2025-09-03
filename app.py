@@ -57,10 +57,16 @@ def oxford():
 def hello():
 	return {"greet": "hello world"}
 
+word = reqparse.RequestParser()
+word.add_argument("word", type=str, help="Word to search", required=True)
+
 @api.resource("/meaning")
 class Meaning(Resource):
 	def post(self):
-		return {"greet": "Hello world"}
+		args = word.parse_args()
+		return {
+			"meaning": Word(args['word']).definitions
+		}
 
 
 if __name__ == '__main__':
