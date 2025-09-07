@@ -1,16 +1,12 @@
 from flask import Flask, render_template, request
 from textblob import Word, TextBlob
 from flask_restful import Resource, Api, reqparse
+import nltk
+
+nltk.download('wordnet')
 
 app = Flask(__name__)
 api = Api(app)
-
-# @app.route('/spelling/grammar', methods=['GET','POST'])
-# def grammar():
-# 	if request.method == 'POST':
-# 		wrong = request.form.get('word')
-# 		correct = TextBlob(wrong).correct()
-# 	return render_template('spell.html', correct=correct)
 
 @app.route("/")
 def index():
@@ -28,4 +24,4 @@ class Meaning(Resource):
 		}
 	
 if __name__ == '__main__':
-	app()
+	app.run(host="0.0.0.0")
